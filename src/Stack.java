@@ -21,22 +21,53 @@ public class Stack<E> {
     private Node<E> head;
     private int size;
 
+    /**
+     * Constructor, initializes private fields for size and head.
+     */
     public Stack() {
-        this.size = 0;
     }
 
+    /**
+     * Creates a new Node with the new element and adds it to the top of the stack.
+     * @param element
+     */
     public void push(E element) {
-
+        Node<E> newEle;
+        if(!isEmpty()) {
+            newEle = new Node<E>(element, null, null);
+            this.head = newEle;
+        } else {
+            newEle = new Node<E>(element, head, null);
+            this.head.setNext(newEle);
+            this.head = newEle;
+        }
+        this.size += 1;
     }
 
+    /**
+     * @return the top element on the stack without removing it from the data structure.
+     */
     public E top() {
-        E temp = null;
-        return temp;
+        E top = this.head.getElement();
+        return top;
     }
 
+    /**
+     * @return the top element on the stack, removing it from the data structure.
+     */
     public E pop() {
-        E temp = null;
-        return temp;
+        if(!isEmpty()) {
+            E top = this.head.getElement();
+            if(this.size == 1) {
+                this.head = null;
+            } else {
+                this.head = this.head.getPrevious();
+                this.head.setNext(null);
+            }
+            this.size -= 1;
+            return top;
+        } else
+            throw new IllegalArgumentException();
     }
 
     /**
@@ -47,10 +78,16 @@ public class Stack<E> {
         this.size = 0;
     }
 
+    /**
+     * @return the private size field.
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * @return the top Node.
+     */
     public Node<E> getHead() {
         return head;
     }

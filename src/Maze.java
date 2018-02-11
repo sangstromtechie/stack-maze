@@ -23,8 +23,6 @@ public class Maze {
     private String[][] maze;
 
     public void Maze() {
-        this.startPoint = null;
-        this.maze = null;
     }
 
     public void readMazeFile(String mazeFileName) {
