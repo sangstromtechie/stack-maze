@@ -61,18 +61,19 @@ public class Stack<E> {
      * @return the top element on the stack, removing it from the data structure.
      */
     public E pop() {
-        if(!isEmpty()) {
-            E top = this.head.getElement();
-            if(this.size == 1) {
-                this.head = null;
-            } else {
-                this.head = this.head.getPrevious();
-                this.head.setNext(null);
-            }
-            this.size -= 1;
-            return top;
-        } else
+        if(isEmpty())
             throw new NoSuchElementException("pop() not allowed on Empty Stack!");
+
+        E top = this.head.getElement();
+        if(this.size > 1) {
+            this.head = this.head.getPrevious();
+            this.head.setNext(null);
+        } else
+            this.head = null;
+
+        this.size -= 1;
+        return top;
+
     }
 
     /**
