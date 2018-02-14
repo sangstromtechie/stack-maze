@@ -293,6 +293,7 @@ public class StackTest
         Stack<Point> stack = new Stack<Point>();
         stack.push(new Point(3, 5));
         stack.push(new Point(2, 4));
+        stack.clear(); //Scott you forgot to actual clear the Stack tsk tsk.
         assertNull(stack.getHead());
         assertTrue(stack.isEmpty());
     }

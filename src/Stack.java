@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 /**
  * Stack - A class for creating and manipulating a stack of nodes containing generic data of type E.
  *
@@ -33,7 +35,7 @@ public class Stack<E> {
      */
     public void push(E element) {
         Node<E> newEle;
-        if(!isEmpty()) {
+        if(isEmpty()) {
             newEle = new Node<E>(element, null, null);
             this.head = newEle;
         } else {
@@ -48,6 +50,9 @@ public class Stack<E> {
      * @return the top element on the stack without removing it from the data structure.
      */
     public E top() {
+        if(isEmpty())
+            throw  new NoSuchElementException("top() not allowed on Empty Stack!");
+
         E top = this.head.getElement();
         return top;
     }
@@ -67,7 +72,7 @@ public class Stack<E> {
             this.size -= 1;
             return top;
         } else
-            throw new IllegalArgumentException();
+            throw new NoSuchElementException("pop() not allowed on Empty Stack!");
     }
 
     /**
